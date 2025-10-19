@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Thiệp 20/10 - Gửi người thương 💖</title>
+    <style>
+      /* 🌸 Giao diện tổng thể */
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        font-family: "Segoe UI", Tahoma, sans-serif;
+        background: linear-gradient(180deg, #ffe6f0, #ffd6e0);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      /* 🌹 Khung thiệp */
+      .card {
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 24px;
+        box-shadow: 0 10px 28px rgba(255, 90, 130, 0.2);
+        width: 92%;
+        max-width: 900px;
+        overflow: hidden;
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        transition: all 0.6s ease;
+      }
+
+      /* 🌸 Nửa trái */
+      .left {
+        padding: 30px;
+        text-align: center;
+        background: linear-gradient(135deg, #ffe2ec, #ffc7d9);
+      }
+      .left img {
+        width: 250px;
+        height: 250px;
+        border-radius: 20px;
+        border: 4px solid #fff;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+        object-fit: cover;
+      }
+      .left h1 {
+        color: #e63975;
+        font-size: 2rem;
+        margin: 14px 0 4px;
+      }
+      .left p {
+        color: #a22f5a;
+        margin: 0;
+      }
+
+      /* 🌸 Nửa phải */
+      .right {
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background: #fff;
+        border-left: 1px solid #ffd6e0;
+      }
+      .right h2 {
+        color: #e63975;
+        font-size: 1.6rem;
+        margin-bottom: 10px;
+      }
+      .note {
+        color: #444;
+        line-height: 1.7;
+        font-size: 1.05rem;
+      }
+      .footer {
+        margin-top: 18px;
+        color: #777;
+        font-size: 0.95rem;
+      }
+      .footer span {
+        color: #e63975;
+        font-weight: 600;
+      }
+
+      /* 💗 Nút bấm */
+      .buttons {
+        margin-top: 18px;
+      }
+      button {
+        border: none;
+        padding: 10px 18px;
+        border-radius: 22px;
+        margin: 6px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.2s;
+      }
+      .open-btn {
+        background: #e63975;
+        color: #fff;
+      }
+      .print-btn {
+        background: #fff;
+        border: 1px solid #f5a5c1;
+        color: #e63975;
+      }
+      button:hover {
+        transform: scale(1.05);
+      }
+
+      /* 💞 Tim bay */
+      .heart {
+        position: absolute;
+        width: 36px;
+        height: 36px;
+        background: linear-gradient(135deg, #ff7aa3, #ffb3c6);
+        transform: rotate(-45deg);
+        border-radius: 4px;
+        animation: floatUp 6s infinite;
+        opacity: 0.9;
+      }
+      .heart:before,
+      .heart:after {
+        content: "";
+        position: absolute;
+        width: 36px;
+        height: 36px;
+        background: linear-gradient(135deg, #ff7aa3, #ffb3c6);
+        border-radius: 50%;
+      }
+      .heart:before {
+        top: -18px;
+        left: 0;
+      }
+      .heart:after {
+        left: 18px;
+        top: 0;
+      }
+
+      @keyframes floatUp {
+        0% {
+          transform: translateY(0) rotate(-45deg) scale(0.9);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        50% {
+          transform: translateY(-180px) rotate(-45deg) scale(1);
+        }
+        100% {
+          transform: translateY(-420px) rotate(-45deg) scale(0.8);
+          opacity: 0;
+        }
+      }
+
+      /* 📱 Responsive */
+      @media (max-width: 720px) {
+        .card {
+          grid-template-columns: 1fr;
+        }
+        .right {
+          border-left: none;
+          border-top: 1px solid #ffd6e0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <audio id="bgMusic" src="music/sweet-melody.mp3"></audio>
+
+    <div class="card" id="card">
+      <!-- Tim trang trí -->
+      <div class="heart" style="left: 8%; bottom: 0"></div>
+      <div class="heart" style="left: 30%; bottom: 30px"></div>
+      <div class="heart" style="left: 60%; bottom: 0"></div>
+      <div class="heart" style="right: 10%; bottom: 10px"></div>
+
+      <section class="left">
+        <img src="20e65aa3-3630-4514-b8e4-8be395f60e5a.jpg" alt="Ảnh kỷ niệm" />
+        <h1>Chúc mừng ngày 20/10 💐</h1>
+        <p>Dành tặng người con gái tuyệt vời nhất!</p>
+        <div class="buttons">
+          <button class="open-btn" onclick="openCard()">💌 Mở thiệp</button>
+          <button class="print-btn" onclick="printCard()">🖨️ In thiệp</button>
+        </div>
+      </section>
+
+      <section class="right" id="message" style="display: none">
+        <h2>Gửi đến người thương của anh 💖</h2>
+        <p class="note">
+          Nhân ngày Phụ nữ Việt Nam 20/10,<br />
+          chúc em luôn xinh đẹp, hạnh phúc và tràn đầy yêu thương!<br /><br />
+          Cảm ơn em vì đã luôn ở bên, dịu dàng và ấm áp như ánh nắng.<br />
+          Mong rằng mọi điều tốt đẹp nhất sẽ đến với em —<br />
+          người con gái đáng yêu nhất trong trái tim anh 💗
+        </p>
+        <div class="footer">Với tất cả yêu thương, <span>anh ❤️</span></div>
+      </section>
+    </div>
+    <!-- QR code sẽ tạo ở đây -->
+    <div style="position: fixed; bottom: 10px; right: 10px; text-align: center">
+      <div id="qrcode"></div>
+      <p style="font-size: 0.8rem; color: #e63975">Quét để xem thiệp 💌</p>
+    </div>
+
+    <!-- Thư viện tạo QR -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <script>
+      const link = "https://thiep20-10.com";
+      new QRCode(document.getElementById("qrcode"), {
+        text: link,
+        width: 100,
+        height: 100,
+        colorDark: "#e63975",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H,
+      });
+      function openCard() {
+        document.getElementById("message").style.display = "flex";
+        const music = document.getElementById("bgMusic");
+        music.volume = 0.6;
+        music.play();
+      }
+      function printCard() {
+        window.print();
+      }
+    </script>
+  </body>
+</html>
